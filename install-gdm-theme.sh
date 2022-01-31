@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eux
+set -e
 if [[ $# -ne 0 ]]; then
 	if [ "$1" == 'restore' ]; then
 		sudo mv /usr/share/gnome-shell/gnome-shell-theme.gresource{~,}
@@ -25,3 +25,4 @@ else
 	rm -rf $(pwd)/output
 	rm -rf $(pwd)/gnome-shell-main-data-theme
 fi
+echo "Please Reboot for Changes to Apply"
