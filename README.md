@@ -16,6 +16,8 @@ Installs Latest Gnome Shell Theme to make it look like GNOME 42.
   - `glib2-devel` (Fedora, openSUSE, etc.)
   - `libglib2.0-dev-bin` (Debian, Ubuntu, etc.)
 - `sassc`
+- `curl`
+- `git`
  
  ## Usage
  
