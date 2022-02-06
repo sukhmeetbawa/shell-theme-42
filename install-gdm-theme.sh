@@ -15,6 +15,9 @@ if [[ $# -ne 0 ]]; then
 else
 	mkdir -p $(pwd)/output/
 	git clone https://gitlab.gnome.org/GNOME/gnome-shell.git
+	cd $(pwd)/gnome-shell
+	git reset --hard a0206dcc3ff114a048f789589868fa2869189045
+	cd ..
 	cp -r $(pwd)/gnome-shell/data/theme/*.svg $(pwd)/output/
 	cp -r $(pwd)/gnome-shell/data/gnome-shell-theme.gresource.xml $(pwd)/output/gnome-shell-theme.gresource.xml
 	while true; do
@@ -23,7 +26,7 @@ else
 			[Yy]* ) corner; break;;
 		        * ) break;;
 		esac
-	done
+	done	
 	sassc -a $(pwd)/gnome-shell/data/theme/gnome-shell.scss $(pwd)/output/gnome-shell.css
 	sassc -a $(pwd)/gnome-shell/data/theme/gnome-shell-high-contrast.scss $(pwd)/output/gnome-shell-high-contrast.css
 	cp $(pwd)/gnome-shell/data/theme/pad-osd.css $(pwd)/output/pad-osd.css
