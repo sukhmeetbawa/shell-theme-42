@@ -1,5 +1,6 @@
 # shell-theme-upstream
-Installs Latest Gnome Shell Theme to make it look like GNOME 42.
+Installs Latest Gnome Shell Theme to make it look like GNOME 42.\
+I will change the workaround once UI freaze happens on Feb 12.
 
 # Installation
 
