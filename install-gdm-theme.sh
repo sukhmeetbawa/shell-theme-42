@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -e
 
+revert()
+{
+	cd $(pwd)/gnome-shell
+	git revert --no-edit a619eb55bf685f1e99140baf07e04f5dcd5c7b3b
+	git revert --no-edit 1944af4013075acc8ae349d647de44eb27364791
+	git revert --no-edit 0e3ddb1f020ff81cfa38540926f8c34130d25303
+	cd ..
+}
 corner()
 {
 	cd $(pwd)/gnome-shell
@@ -15,9 +23,7 @@ if [[ $# -ne 0 ]]; then
 else
 	mkdir -p $(pwd)/output/
 	git clone https://gitlab.gnome.org/GNOME/gnome-shell.git
-	cd $(pwd)/gnome-shell
-	git reset --hard a0206dcc3ff114a048f789589868fa2869189045
-	cd ..
+	revert
 	cp -r $(pwd)/gnome-shell/data/theme/*.svg $(pwd)/output/
 	cp -r $(pwd)/gnome-shell/data/gnome-shell-theme.gresource.xml $(pwd)/output/gnome-shell-theme.gresource.xml
 	while true; do
