@@ -3,10 +3,12 @@ set -e
 
 revert()
 {
+	commit=(a619eb55bf685f1e99140baf07e04f5dcd5c7b3b 1944af4013075acc8ae349d647de44eb27364791 0e3ddb1f020ff81cfa38540926f8c34130d25303)
 	cd $(pwd)/gnome-shell
-	git revert --no-edit a619eb55bf685f1e99140baf07e04f5dcd5c7b3b
-	git revert --no-edit 1944af4013075acc8ae349d647de44eb27364791
-	git revert --no-edit 0e3ddb1f020ff81cfa38540926f8c34130d25303
+	for i in "${commit[@]}"
+	do
+		git revert --no-edit $i
+	done
 	cd ..
 }
 corner()
