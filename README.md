@@ -1,4 +1,4 @@
-# shell-theme-upstream
+# shell-theme-42
 Installs Latest Gnome Shell Theme to make it look like GNOME 42.
 
 # Installation
@@ -21,7 +21,7 @@ Installs Latest Gnome Shell Theme to make it look like GNOME 42.
  
  ## Usage
  
- - `git clone https://github.com/sukhmeetbawa/shell-theme-upstream.git`
+ - `git clone https://github.com/sukhmeetbawa/shell-theme-42.git`
  - `./install-gdm-theme.sh`
  
 # Uninstall
