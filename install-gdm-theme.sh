@@ -6,6 +6,7 @@ revert()
 	commit=(a619eb55bf685f1e99140baf07e04f5dcd5c7b3b
 		1944af4013075acc8ae349d647de44eb27364791
 		0e3ddb1f020ff81cfa38540926f8c34130d25303)
+	git reset --hard a619eb55bf685f1e99140baf07e04f5dcd5c7b3b
 	cd $(pwd)/gnome-shell
 	for i in "${commit[@]}"
 	do
