@@ -1,5 +1,5 @@
 # shell-theme-42
-Installs Latest Gnome Shell Theme to make it look like GNOME 42.
+Installs GNOME 42 Shell Theme for GNOME 40 & GNOME 41.
 
 # Installation
 
@@ -30,9 +30,13 @@ Installs Latest Gnome Shell Theme to make it look like GNOME 42.
  
 # Uninstall
   
+For System-wide Install
   - `./install-gdm-theme.sh restore`
   or
   - `sudo mv /usr/share/gnome-shell/gnome-shell-theme.gresource{~,}`
+ 
+For Local Install
+  - `rm -rf $HOME/.local/share/themes/gnome-42`
 
 
 # Screenshots
