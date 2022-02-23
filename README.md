@@ -25,7 +25,8 @@ Installs Latest Gnome Shell Theme to make it look like GNOME 42.
  - `cd ./shell-theme-42/`
  - `./install-gdm-theme.sh` For system-wide install\
  - `./install-gdm-theme-local.sh` For local-install\
- For local install you can get rid of rounded corners using just-perfection extension.\
+ Local Install can be used for immutable systems like fedora silverblue
+ For local install you can get rid of rounded corners using just-perfection extension.
  
 # Uninstall
   
