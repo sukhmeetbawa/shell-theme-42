@@ -21,13 +21,32 @@ corner()
 	cd ..
 }
 
+fix_dash()
+{
+	sed -i 's/margin-bottom: 15px/margin-bottom: 0px/g' $(pwd)/gnome-shell/data/theme/gnome-shell-sass/widgets/_dash.scss
+}
+
+install_local()
+{
+	mkdir -p $HOME/.local/share/themes/gnome-42/gnome-shell
+	cp $(pwd)/* $HOME/.local/share/themes/gnome-42/gnome-shell
+}
+install_system()
+{
+	glib-compile-resources $(pwd)/gnome-shell-theme.gresource.xml
+	sudo mv /usr/share/gnome-shell/gnome-shell-theme.gresource{,~}
+	if [[ $(ls -l /usr/share/gnome-shell/gnome-shell-theme.gresource~ | wc -l) == 0 ]]; then
+		sudo cp /usr/share/gnome-shell/gnome-shell-theme.gresource{,~}
+	fi
+	sudo cp $(pwd)/gnome-shell-theme.gresource /usr/share/gnome-shell/gnome-shell-theme.gresource
+}
 if [[ $# -ne 0 ]]; then
 	if [ "$1" == 'restore' ]; then
 		sudo mv /usr/share/gnome-shell/gnome-shell-theme.gresource{~,}
 	fi
 else
 	mkdir -p $(pwd)/output/
-	git clone https://gitlab.gnome.org/GNOME/gnome-shell.git
+	git clone -b 42.beta https://gitlab.gnome.org/GNOME/gnome-shell.git
 	revert
 	cp -r $(pwd)/gnome-shell/data/theme/*.svg $(pwd)/output/
 	cp -r $(pwd)/gnome-shell/data/gnome-shell-theme.gresource.xml $(pwd)/output/gnome-shell-theme.gresource.xml
@@ -37,20 +56,36 @@ else
 			[Yy]* ) corner; break;;
 		        * ) break;;
 		esac
-	done	
+	done
+	INSTALL=0
+	PS3='Enter Option Number: '
+    options=("Install Local" "Install System")
+    select opt in "${options[@]}"
+    do
+        case $opt in
+		"Install Local")
+		fix_dash
+		break
+		;;
+		"Install System")
+		INSTALL=1
+		break
+		;;
+		esac
+    done
 	sassc -a $(pwd)/gnome-shell/data/theme/gnome-shell.scss $(pwd)/output/gnome-shell.css
 	sassc -a $(pwd)/gnome-shell/data/theme/gnome-shell-high-contrast.scss $(pwd)/output/gnome-shell-high-contrast.css
 	cp $(pwd)/gnome-shell/data/theme/pad-osd.css $(pwd)/output/pad-osd.css
 	cd $(pwd)/output
-	glib-compile-resources $(pwd)/gnome-shell-theme.gresource.xml
-	sudo mv /usr/share/gnome-shell/gnome-shell-theme.gresource{,~}
-	if [[ $(ls -l /usr/share/gnome-shell/gnome-shell-theme.gresource~ | wc -l) == 0 ]]; then
-		sudo cp /usr/share/gnome-shell/gnome-shell-theme.gresource{,~}
+	if [ $INSTALL == 0 ]; then
+		install_local
+		echo "Please change shell theme to gnome-42 from user themes extensions"
+	else
+		install_system
+		echo "Please Reboot for Changes to Apply or Alt + F2 and enter rt"
 	fi
-	sudo cp $(pwd)/gnome-shell-theme.gresource /usr/share/gnome-shell/gnome-shell-theme.gresource
 	cd ..
 	rm -rf $(pwd)/theme.zip
 	rm -rf $(pwd)/output
 	rm -rf $(pwd)/gnome-shell
 fi
-echo "Please Reboot for Changes to Apply or Alt + F2 and enter rt"
