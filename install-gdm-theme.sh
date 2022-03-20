@@ -38,6 +38,13 @@ else
 		        * ) break;;
 		esac
 	done
+	cd $(pwd)/gnome-shell
+	git checkout 4b56acb7753dfa96562cdfc5038ee1f17834cc44 data/theme/gnome-shell-sass/widgets/_dash.scss
+	git checkout 4b56acb7753dfa96562cdfc5038ee1f17834cc44 data/theme/gnome-shell-sass/widgets/_message-list.scss
+	git checkout 4b56acb7753dfa96562cdfc5038ee1f17834cc44 data/theme/gnome-shell-sass/widgets/_popovers.scss
+	git checkout 4b56acb7753dfa96562cdfc5038ee1f17834cc44 data/theme/gnome-shell-sass/widgets/_scrollbars.scss
+	git checkout 4b56acb7753dfa96562cdfc5038ee1f17834cc44 data/theme/gnome-shell-sass/*.scss
+	cd ..
 	sassc -a $(pwd)/gnome-shell/data/theme/gnome-shell.scss $(pwd)/output/gnome-shell.css
 	sassc -a $(pwd)/gnome-shell/data/theme/gnome-shell-high-contrast.scss $(pwd)/output/gnome-shell-high-contrast.css
 	cp $(pwd)/gnome-shell/data/theme/pad-osd.css $(pwd)/output/pad-osd.css
