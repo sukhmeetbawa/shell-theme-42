@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eux
+set -e
 
 rrevert()
 {
@@ -31,7 +31,7 @@ if [ $shellVersion -ge 40 ]; then
 	if [ $shellVersion -ge 42 ]; then
 		echo "Installing Vanilla Gnome Shell Theme"
 		curl -LO https://gitlab.gnome.org/GNOME/gnome-shell/-/archive/$shellVersion.$shellRelease/gnome-shell-$shellVersion.$shellRelease.tar.gz
-		tar -xvf $(pwd)/gnome-shell-$shellVersion.$shellRelease.tar.gz
+		tar -xf $(pwd)/gnome-shell-$shellVersion.$shellRelease.tar.gz
 		cd $(pwd)/gnome-shell-$shellVersion.$shellRelease/
 		sassc -a $(pwd)/data/theme/gnome-shell.scss $(pwd)/data/theme/gnome-shell.css
 		sassc -a $(pwd)/data/theme/gnome-shell-high-contrast.scss $(pwd)/data/theme/gnome-shell-high-contrast.css
@@ -62,7 +62,6 @@ if [ $shellVersion -ge 40 ]; then
 			revert
 			cp -r $(pwd)/gnome-shell/data/theme/*.svg $(pwd)/output/
 			cp -r $(pwd)/gnome-shell/data/gnome-shell-theme.gresource.xml $(pwd)/output/gnome-shell-theme.gresource.xml
-			
 			cd $(pwd)/gnome-shell
 			git checkout 4b56acb7753dfa96562cdfc5038ee1f17834cc44 data/theme/gnome-shell-sass/widgets/_dash.scss
 			git checkout 4b56acb7753dfa96562cdfc5038ee1f17834cc44 data/theme/gnome-shell-sass/widgets/_message-list.scss
@@ -75,9 +74,8 @@ if [ $shellVersion -ge 40 ]; then
 			cp $(pwd)/gnome-shell/data/theme/pad-osd.css $(pwd)/output/pad-osd.css
 			cd $(pwd)/output
 			glib-compile-resources $(pwd)/gnome-shell-theme.gresource.xml
-			sudo mv /usr/share/gnome-shell/gnome-shell-theme.gresource{,~}
 			if [[ $(ls -l /usr/share/gnome-shell/gnome-shell-theme.gresource~ | wc -l) == 0 ]]; then
-			sudo cp /usr/share/gnome-shell/gnome-shell-theme.gresource{,~}
+				sudo mv /usr/share/gnome-shell/gnome-shell-theme.gresource{,~}
 			fi
 			sudo cp $(pwd)/gnome-shell-theme.gresource /usr/share/gnome-shell/gnome-shell-theme.gresource
 			cd ..

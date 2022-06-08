@@ -23,7 +23,6 @@ Installs GNOME 42 Shell Theme for GNOME 40 & GNOME 41.
 
  - `git clone https://github.com/sukhmeetbawa/shell-theme-42.git`
  - `cd ./shell-theme-42/`
- - `chmod +x ./install-shell-theme.sh`
  - `./install-shell-theme.sh`
  
  Local Install can be used for immutable systems like fedora silverblue or if you don't want to change gdm theme.
