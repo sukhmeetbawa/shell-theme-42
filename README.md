@@ -23,20 +23,18 @@ Installs GNOME 42 Shell Theme for GNOME 40 & GNOME 41.
 
  - `git clone https://github.com/sukhmeetbawa/shell-theme-42.git`
  - `cd ./shell-theme-42/`
- - `./install-gdm-theme.sh` For system-wide install\
- - `./install-gdm-theme-local.sh` For local-install\
- Local Install can be used for immutable systems like fedora silverblue.\
- For local install you can get rid of rounded corners using [just-perfection](https://extensions.gnome.org/extension/3843/just-perfection/) extension.
+ - `chmod +x ./install-shell-theme.sh`
+ - `./install-shell-theme.sh`
+ 
+ Local Install can be used for immutable systems like fedora silverblue or if you don't want to change gdm theme.
  
 # Uninstall
   
 For System-wide Install
-  - `./install-gdm-theme.sh restore`
-  or
   - `sudo mv /usr/share/gnome-shell/gnome-shell-theme.gresource{~,}`
  
 For Local Install
-  - `rm -rf $HOME/.local/share/themes/gnome-42`
+  - `rm -rf $HOME/.local/share/themes/{vanilla-theme,gnome-42}`
 
 
 # Screenshots
